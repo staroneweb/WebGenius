@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Theme - from reference styles/globals.css */
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.65 0.15 145);
+    --accent-foreground: oklch(0.145 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+  }
+
+  .dark {
+    /* Dark Theme - from reference app/globals.css */
+    --background: oklch(0.09 0.005 260);
+    --foreground: oklch(0.98 0 0);
+    --card: oklch(0.12 0.008 260);
+    --card-foreground: oklch(0.98 0 0);
+    --popover: oklch(0.12 0.008 260);
+    --popover-foreground: oklch(0.98 0 0);
+    --primary: oklch(0.98 0 0);
+    --primary-foreground: oklch(0.09 0.005 260);
+    --secondary: oklch(0.18 0.01 260);
+    --secondary-foreground: oklch(0.98 0 0);
+    --muted: oklch(0.18 0.01 260);
+    --muted-foreground: oklch(0.65 0 0);
+    --accent: oklch(0.65 0.15 145);
+    --accent-foreground: oklch(0.09 0.005 260);
+    --destructive: oklch(0.55 0.2 25);
+    --destructive-foreground: oklch(0.98 0 0);
+    --border: oklch(0.22 0.01 260);
+    --input: oklch(0.15 0.008 260);
+    --ring: oklch(0.65 0.15 145);
+    --chart-1: oklch(0.65 0.15 145);
+    --chart-2: oklch(0.6 0.15 200);
+    --chart-3: oklch(0.7 0.12 80);
+    --chart-4: oklch(0.6 0.2 300);
+    --chart-5: oklch(0.65 0.2 25);
+    --radius: 0.75rem;
+    --sidebar: oklch(0.07 0.005 260);
+    --sidebar-foreground: oklch(0.98 0 0);
+    --sidebar-primary: oklch(0.98 0 0);
+    --sidebar-primary-foreground: oklch(0.09 0.005 260);
+    --sidebar-accent: oklch(0.15 0.01 260);
+    --sidebar-accent-foreground: oklch(0.98 0 0);
+    --sidebar-border: oklch(0.18 0.01 260);
+    --sidebar-ring: oklch(0.65 0.15 145);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  *:focus-visible {
+    outline-color: var(--ring);
+    outline-opacity: 0.5;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Ensure accent color is properly applied */
+  .text-accent {
+    color: var(--accent) !important;
+  }
+  
+  .bg-accent {
+    background-color: var(--accent) !important;
+  }
+  
+  .border-accent {
+    border-color: var(--accent) !important;
+  }
+  
+  /* Smooth transitions for theme changes */
+  * {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+  
+  /* Exclude certain elements from transitions */
+  svg,
+  img,
+  video,
+  canvas,
+  audio,
+  iframe,
+  embed,
+  object {
+    transition: none;
+  }
+}
+

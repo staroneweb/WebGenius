@@ -1,0 +1,41 @@
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import { PromptModule } from './prompt/prompt.module';
+import { SubscriptionModule } from './subscription/subscription.module';
+import { WebsiteModule } from './website/website.module';
+import { RoleModule } from './role/role.module';
+import { LoggingMiddleware } from './common/middleware/logging.middleware';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+    TypeOrmModule.forRoot({
+      type: 'mongodb',
+      url: process.env.MONGODB_URI,
+      synchronize: true,
+      autoLoadEntities: true,
+      // MongoDB Atlas uses SSL automatically with mongodb+srv:// protocol
+      // No additional SSL configuration needed
+    }),
+    AuthModule,
+    UserModule,
+    PromptModule,
+    SubscriptionModule,
+    WebsiteModule,
+    RoleModule,
+  ],
+})
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(LoggingMiddleware)
+      .forRoutes('*');
+  }
+}
+
